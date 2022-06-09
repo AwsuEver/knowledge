@@ -4,7 +4,7 @@
 
 > 标题
 >
-> > `h1` -> `h6`
+> > `h1` -> `h6` 、`title`
 > >
 > > `hr` 水平线可用于分割
 >
@@ -15,4 +15,54 @@
 > > `br` 换行
 >
 > 文本格式化
+>
+> > `b`、`em`，`i`，`small`，`strong`，`sub`，`sup`，`ins`、`del`、`q`
+>
+> 区块
+>
+> > `p`、`div`、`span`
+>
+> 列表
+>
+> > `ul`、`ol`、`li`、`dl`、`dt`、`dd`
+>
+> 表格
+>
+> > `table`、`tr`、`th`、`td`、`thead`、`tbody`、`tfoot`、`caption`
+>
+> 链接、图像
+>
+> > `a`、`img`
+>
+> 框架
+>
+> > `iframe`
+
+#### html5
+
+* 语义化
+
+  优点：1. 样式丢失时页面会呈现清晰的结构
+
+  2. 有利于SEO
+  3. 方便屏幕解析器解析（如盲人阅读器）
+  4. 便于代码维护
+
+  > `header`、`nav`、`section`、`article`、`aside`、`figcaption`、`figure`、`footer`
+
+  ![HTML5 语义元素](https://www.runoob.com/wp-content/uploads/2013/07/html5-layout.jpg)
+
+* 表单
+
+  
+
+* 多媒体
+
+* 图形
+
+* 存储
+
+* WebWork
+
+* WebSocket
 
