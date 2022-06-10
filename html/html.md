@@ -54,7 +54,21 @@
 
 * 表单
 
-  
+  * 新增元素
+
+    `detalist`  用户输入时显示选项、`keygen`  用户加密生成密钥、`output`  用户不同类型的输出
+
+  * 新增属性
+
+    - form属性
+
+      `autocomplete`,`novalidate`布尔值，不验证输入域
+
+    - input属性
+
+      `autocomplete`、`autofocus`、`form`、`formaction`描述表单提交地址、`formenctype`描述数据编码、`formmethod`描述表单提交方式、`formnovalidate`布尔值表单提交无需验证、`formtarget`、`height`、`width`、`list`、`min`、`max`、`mulltiple`、`pattern`
+
+      `placeholder`、`required`、`step`
 
 * 多媒体
 
