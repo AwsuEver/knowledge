@@ -452,5 +452,100 @@
 
 #### mate标签
 
+> 一般用于定义页面的说明，关键字、最后修改日期和其它元数据；这些数据服务于浏览器、搜索引擎；拥有四个属性`name`，`http-equiv`，`content`，`scheme`
+
+- **name属性**
+
+  - **keywords（关键字）**
+
+    说明：用于告诉搜索引擎，你网页的关键字
+
+    ~~~html
+    <meta name="keywords" content="PHP中文网">
+    ~~~
+
+  - **description(网站内容的描述)**
+
+    说明：用于告诉搜索引擎，你网站的主要内容
+
+    ~~~html
+    <meta name="description" content="php中文网提供大量免费、原创、高清的php视频教程">
+    ~~~
+
+  - **viewport(移动端的窗口)**
+
+    说明：常用于设计移动端网页
+
+    ~~~html
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    ~~~
+
+  - **robots(定义搜索引擎爬虫的索引方式)**
+
+    说明：robots用来告诉爬虫哪些页面需要索引，哪些页面不需要索引
+
+    > 1、none : 搜索引擎将忽略此网页，等价于noindex，nofollow。
+    > 2、noindex : 搜索引擎不索引此网页。
+    > 3、nofollow: 搜索引擎不继续通过此网页的链接索引搜索其它的网页。
+    > 4、all : 搜索引擎将索引此网页与继续通过此网页的链接索引，等价于index，follow。
+    > 5、index : 搜索引擎索引此网页。
+    > 6、follow : 搜索引擎继续通过此网页的链接索引搜索其它的网页。
+
+    ~~~html
+    <meta name="robots" content="none">
+    ~~~
+
+  - **author(作者)**
+
+    说明：用于标注网页作者
+
+    ~~~html
+    <meta name="author" content="PHP中文网">
+    ~~~
+
+  - **generator(网页制作软件)**
+
+    说明：用于标明网页是什么软件做的
+
+    ~~~html
+    <meta name="generator" content="Sublime Text3">
+    ~~~
+
+  - **copyright(版权)**
+
+    说明：用于标注版权信息
+
+    ~~~html
+    <meta name="copyright" content="PHP中文网">
+    ~~~
+
+  - **revisit-after(搜索引擎爬虫重访时间)**
+
+    说明：如果页面不是经常更新，为了减轻搜索引擎爬虫对服务器带来的压力，可以设置一个爬虫的重访时间。如果重访时间过短，爬虫将按它们定义的默认时间来访问。
+
+    ~~~html
+    <meta name="revisit-after" content="7 days" >
+    ~~~
+
+  - **renderer(双核浏览器渲染方式)**
+
+    说明：renderer是为双核浏览器准备的，用于指定双核浏览器默认以何种方式渲染页面。
+
+    ~~~html
+    <meta name="renderer" content="webkit"> //默认webkit内核
+    
+    <meta name="renderer" content="ie-comp"> //默认IE兼容模式
+    
+    <meta name="renderer" content="ie-stand"> //默认IE标准模式
+    ~~~
+
+    
+
+- **http-equiv属性**
+
+- **content属性**
+
+- **scheme属性**
+
 #### Iframe
 
