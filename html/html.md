@@ -627,3 +627,43 @@
 
 #### Iframe
 
+> 用于标记一个内联框架
+>
+> 一个内联框架被用来在当前HTML文档中嵌入另一个文档
+
+- **使用说明**
+
+  ~~~html
+  <iframe src="www.baidu.com"></iframe>
+  
+  <!--
+  height: 设置iframe高度
+  width:  设置iframe宽度
+  name:   规定iframe名称
+  src:    定义iframe中显示的文档的URL
+  sameless: 规定iframe看起来像父文档的一部分
+  sandbox:  对iframe的内容定义一系列额外的限制
+          -allow-forms
+  		-allow-same-origin
+  		-allow-scripts
+  		-allow-top-navigation
+  -->
+  ~~~
+
+- **iframe使用父级内容**
+
+  ~~~js
+  // 方法1
+  let iframe = document.getElementById('demo')
+  let _window = iframe.contentWindow   // 获取iframe的window对象
+  let idoc = iframe.contentDocument    // 获取iframe的document对象
+  
+  // 方法2
+  let iframe = window.frame['demo']
+  ~~~
+
+- **iframe使用父级内容**
+
+  可以通过 `window.self`，`window.parent`，`window.top` 这三个属性，分别获取自身window对象、父级window对象、顶级window对象
+
+- 
