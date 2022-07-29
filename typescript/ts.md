@@ -33,6 +33,7 @@
 
 ~~~ts
 let 变量： 类型
+let 变量: 类型1 | 类型2
 let 变量： 类型 = 值
 
 function fn(参数: 类型, 参数: 类型): 类型{
@@ -48,14 +49,24 @@ function fn(参数: 类型, 参数: 类型): 类型{
 
 ##### 类型
 
-| 类型    | 声明方式                                                     | 描述                     | 示例                    |
-| ------- | ------------------------------------------------------------ | ------------------------ | ----------------------- |
-| number  | `let num: number = 100`                                      | 数值型，任意数字         | 1、-3、，25             |
-| string  | `let str: string = 'hi'`                                     | 任意字符串               | 'hi',、"hi"、hi         |
-| boolean | `let bool: boolean = true`                                   | 布尔值，true或false      | true、false             |
-| array   | `let arr: number[] = [1,2,3]`<br />`let arr: Array<string> = ['hello','hi']` | 任意js数组               | [1,2,3]、['hi','a','b'] |
-| any     |                                                              | 不希望某个值导致类型错误 |                         |
-|         |                                                              |                          |                         |
+| 类型    | 声明方式                                                     | 描述                               | 示例                                                   |
+| ------- | ------------------------------------------------------------ | ---------------------------------- | ------------------------------------------------------ |
+| number  | `let num: number = 100`                                      | 数值型，任意数字                   | 1、-3、，25                                            |
+| string  | `let str: string = 'hi'`                                     | 任意字符串                         | 'hi',、"hi"、hi                                        |
+| boolean | `let bool: boolean = true`                                   | 布尔值，true或false                | true、false                                            |
+| array   | `let arr: number[] = [1,2,3]`<br />`let arr: Array<string> = ['hello','hi']` | 任意js数组                         | [1,2,3]、['hi','a','b']                                |
+| any     | *                                                            | 任意类型，不希望某个值导致类型错误 | *                                                      |
+| unknow  | *                                                            | 类型安全的any                      | *                                                      |
+| void    | `function fn(): void{}`                                      | 以函数为例，表示返回值为空         | *                                                      |
+| never   | `function fn(): never{}`                                     | 表示不会有返回结果                 | function fn(): never{<br />thrrow new Error('报错了')} |
 
+除了上述类型之外，
 
+~~~ts
+// 对象
+let obj = {
+    name: string,
+	age: number
+}
+~~~
 
