@@ -66,19 +66,19 @@ function fn(参数: 类型, 参数: 类型): 类型{
 
 ~~~typescript
 // 属性个数确定的对象声明
-let obj = {
+let obj: {
     name: string,
 	age: number
 }
 
 // 可选属性的对象声明
-let obj = {
+let obj: {
     name: string,   // name属性为必填属性
     age?: number    // age属性可用可不用，不会报错
 }
 
 // 属性个数不确定的对象声明
-let obj = {
+let obj: {
     name: string,
     [paramsName: string]: any     // 表示非必填属性的属性名类型为字符串，属性值为任意值
 }
@@ -88,7 +88,7 @@ let obj = {
 
 ~~~typescript
 // 参数个数确定的函数声明及使用
-let func = (a: nunmber, b: number) => number     // 声明
+let func: (a: nunmber, b: number) => number     // 声明
 func = function(age1, age2): number{             // 使用
     return age1 + age2
 }
@@ -133,11 +133,38 @@ obj = {
 
 ~~~
 
+**接口**
+
+~~~typescript
+interface Animal{
+    name: string,
+}
+interface Dog extends Animal{
+    age: number
+}
+~~~
+
 **类型别名**
 
 ~~~typescript
 let myType = 1 | 2 | 3 | 4 | 5
+let myType1 = {
+    x: number,
+    y: string
+}
 
 let a = myType
 ~~~
+
+**类型断言**
+
+ ~~~typescript
+ // 断言即可以手动一个类型，允许变量从一个类型变成另一个类型
+ let obj: {name: stting, age: number}
+ // 方式一
+ let obj1 as obj
+ // 方式二
+ let <obj>obj2
+ 
+ ~~~
 
