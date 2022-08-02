@@ -136,24 +136,36 @@ obj = {
 **接口**
 
 ~~~typescript
+// 只能为对象指定类型
 interface Animal{
-    name: string,
+    // 如果换行的话，不需要加分号；不换行需要分号
+    name: string
+    asyHi(): void
 }
+
+// 接口继承
 interface Dog extends Animal{
     age: number
+}
+
+// 使用
+let dog: Dog ={
+    name: '旺财',
+    age: 2,
+    sayHi: () => {
+        console.log('wang...')
+    }
 }
 ~~~
 
 **类型别名**
 
 ~~~typescript
-let myType = 1 | 2 | 3 | 4 | 5
-let myType1 = {
-    x: number,
-    y: string
-}
+// 定义
+type CustomArray = (string | number)[]
 
-let a = myType
+// 使用
+let arr: CustomArray = [1,2,3, 'a', 'b']
 ~~~
 
 **类型断言**
@@ -167,4 +179,26 @@ let a = myType
  let <obj>obj2
  
  ~~~
+
+**typeof**
+
+~~~typescript
+/**
+	使用场景： 1. 可以像js中的typeof一样使用，用于判断元素类型
+	2. 可以在类型上下文中引用变量或属性的类型
+*/
+// 场景一
+typeof 'aaa'   // string
+
+// 场景二
+let p = {x: 1, y: 2}
+
+function point(poing: {x: number, y: number}){}
+// 可以改为下面这种方式
+function point(poing: typeof p){}
+~~~
+
+
+
+#### 面向对象
 
