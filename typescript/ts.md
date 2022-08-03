@@ -31,8 +31,10 @@
 
 语法如下：
 
-~~~ts
+~~~typescript
 let 变量： 类型
+let 变量: 类型1 | 类型2   // 或
+let 变量: 类型1 & 类型2
 let 变量： 类型 = 值
 
 function fn(参数: 类型, 参数: 类型): 类型{
@@ -48,14 +50,155 @@ function fn(参数: 类型, 参数: 类型): 类型{
 
 ##### 类型
 
-| 类型    | 声明方式                                                     | 描述                     | 示例                    |
-| ------- | ------------------------------------------------------------ | ------------------------ | ----------------------- |
-| number  | `let num: number = 100`                                      | 数值型，任意数字         | 1、-3、，25             |
-| string  | `let str: string = 'hi'`                                     | 任意字符串               | 'hi',、"hi"、hi         |
-| boolean | `let bool: boolean = true`                                   | 布尔值，true或false      | true、false             |
-| array   | `let arr: number[] = [1,2,3]`<br />`let arr: Array<string> = ['hello','hi']` | 任意js数组               | [1,2,3]、['hi','a','b'] |
-| any     |                                                              | 不希望某个值导致类型错误 |                         |
-|         |                                                              |                          |                         |
+**基本类型**
+
+| 类型    | 声明方式                   | 描述                               | 示例                                                   |
+| ------- | -------------------------- | ---------------------------------- | ------------------------------------------------------ |
+| number  | `let num: number = 100`    | 数值型，任意数字                   | 1、-3、，25                                            |
+| string  | `let str: string = 'hi'`   | 任意字符串                         | 'hi',、"hi"、hi                                        |
+| boolean | `let bool: boolean = true` | 布尔值，true或false                | true、false                                            |
+| any     | *                          | 任意类型，不希望某个值导致类型错误 | *                                                      |
+| unknow  | *                          | 类型安全的any                      | *                                                      |
+| void    | `function fn(): void{}`    | 以函数为例，表示返回值为空         | *                                                      |
+| never   | `function fn(): never{}`   | 表示不会有返回结果                 | function fn(): never{<br />thrrow new Error('报错了')} |
+
+**对象**
+
+~~~typescript
+// 属性个数确定的对象声明
+let obj: {
+    name: string,
+	age: number
+}
+
+// 可选属性的对象声明
+let obj: {
+    name: string,   // name属性为必填属性
+    age?: number    // age属性可用可不用，不会报错
+}
+
+// 属性个数不确定的对象声明
+let obj: {
+    name: string,
+    [paramsName: string]: any     // 表示非必填属性的属性名类型为字符串，属性值为任意值
+}
+~~~
+
+**函数**
+
+~~~typescript
+// 参数个数确定的函数声明及使用
+let func: (a: nunmber, b: number) => number     // 声明
+func = function(age1, age2): number{             // 使用
+    return age1 + age2
+}
+
+~~~
+
+**数组**
+
+~~~typescript
+// 方式一
+let arr: string[]
+
+// 方式二
+let arr: Array<number>
+~~~
+
+**元组**
+
+~~~typescript
+// 元组：就是固定长度的数组
+// 方式一
+let arr: [string, number]    // 定义长度为2,类型依次为string、number的数组
+arr = ['Tom', 18]
+~~~
+
+**枚举**
+
+~~~typescript
+// 对于常用的类型，可以通过枚举的方式先定义好
+enum VersionTypeEnum{    // 定义
+    versionDate = 0,
+    urgent = 1,
+    quality = 2,  
+}
+
+// 使用
+let obj = {system: string, versionType: VersionTypeEnum}
+obj = {
+    system: 'N-OPMS',
+    versionType: VersionTypeEnum.versionDate
+}
+
+~~~
+
+**接口**
+
+~~~typescript
+// 只能为对象指定类型
+interface Animal{
+    // 如果换行的话，不需要加分号；不换行需要分号
+    name: string
+    asyHi(): void
+}
+
+// 接口继承
+interface Dog extends Animal{
+    age: number
+}
+
+// 使用
+let dog: Dog ={
+    name: '旺财',
+    age: 2,
+    sayHi: () => {
+        console.log('wang...')
+    }
+}
+~~~
+
+**类型别名**
+
+~~~typescript
+// 定义
+type CustomArray = (string | number)[]
+
+// 使用
+let arr: CustomArray = [1,2,3, 'a', 'b']
+~~~
+
+**类型断言**
+
+ ~~~typescript
+ // 断言即可以手动一个类型，允许变量从一个类型变成另一个类型
+ let obj: {name: stting, age: number}
+ // 方式一
+ let obj1 as obj
+ // 方式二
+ let <obj>obj2
+ 
+ ~~~
+
+**typeof**
+
+~~~typescript
+/**
+	使用场景： 1. 可以像js中的typeof一样使用，用于判断元素类型
+	2. 可以在类型上下文中引用变量或属性的类型
+*/
+// 场景一
+typeof 'aaa'   // string
+
+// 场景二
+let p = {x: 1, y: 2}
+
+function point(poing: {x: number, y: number}){}
+// 可以改为下面这种方式
+function point(poing: typeof p){}
+~~~
 
 
+
+#### 面向对象
 
