@@ -202,3 +202,56 @@ function point(poing: typeof p){}
 
 #### 面向对象
 
+**基本使用**
+
+~~~typescript
+// 创建一个对象并使用
+class Person{
+    name: string
+    age: number
+    gender= 'male'
+    
+    // 构造函数
+    constructor(name: string, age: number){
+        this.name = name
+        this.age = age
+    }
+    
+    // 对象函数
+    sayHi(content: string): void{
+        console.log('hello', contnt)
+    }
+}
+
+// 实例化对象
+let p = new Person('Bob', 18)
+p.sayHi("大家好！")
+~~~
+
+**继承**
+
+- 使用extends继承
+
+  ~~~typescript
+  class Animal {
+      name: string
+      age: number
+  }
+  
+  class Dog extends Animal{
+      
+      constructor(name: string, age: number){
+          this.name = name
+          this.age = age
+      }
+      
+      bark(){
+          console.log("汪汪汪！")
+      }
+      
+  }
+  
+  let d = new Dog('小白'， 3)
+  ~~~
+
+- 实现implements接口
