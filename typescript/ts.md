@@ -255,3 +255,135 @@ p.sayHi("大家好！")
   ~~~
 
 - 实现implements接口
+
+  ~~~tsx
+  interface Animal{    // 定义一个接口
+      bark(): void
+      name: string
+      age: number
+  }
+  
+  class Dog implements Animal{     // 通过implements实现接口
+      name = '小白'
+      age = 3
+      bark(){
+          console.log('汪汪汪！')
+      }
+  }
+  ~~~
+
+- 修饰符
+
+  - public
+
+    ~~~tsx
+    // public: 表示公有的，公有成员可以被任何地方访问
+    class Animal{
+        public bark(){
+            console.log('bark')
+        }
+    }
+    let a = new Animal()
+    a.bark  // bark
+    
+    class Dog extends Animal{
+        name = '小白'
+    }
+    
+    let d = new Dog()
+    d.name   // 小白
+    d.bark()  // bark
+    ~~~
+
+  - protected
+
+    ~~~tsx
+    // protected: 表示受保护的，仅对其声明所在的类和子类中使用，实例对象不可使用
+    class Animal{
+        bark(){
+            console.log('bark')
+            this.move()
+        }
+        
+        protected move(){
+            console.log("走一走")
+        }
+    }
+    let a = new Animal()
+    a.bark()  // bark
+    a.move()  // 报错
+    
+    class Dog extends Animal{
+        name = '小白'
+        
+        dogMove(){
+            this.move()
+        }
+    }
+    
+    let d = new Dog()
+    d.name       // 小白
+    d.dogMove()  // 走一走
+    d.move()     // 报错
+    
+    ~~~
+
+  - private
+
+    ~~~tsx
+    // private：表示私有的，只在当前类中可见，对实例对象及其子类不可见
+    class Animal{
+        private move(){
+            console.log('走一走')
+        }
+        
+        bark(){
+            console.log('bark')
+            this.move()
+        }
+    }
+    let a = new Animal()
+    a.move()   // 报错
+    a.bark()   // bark    走一走
+    
+    class Dog extends Animal{
+        run(){
+          	console.log('run')  
+            
+            this.move()  //报错
+        }
+    }
+    let d = new Dog()
+    d.run()   // run
+    d.bark()  // bark    走一走
+    d.move()  // 报错
+    ~~~
+
+  - readonly
+
+    ~~~tsx
+    // readonly: 表示只读，防止在构造函数之外对属性赋值，只能修饰属性不能修饰方法
+    class Person {
+        readonly age: number
+        
+       	// readonly使用时，必须手动指明类型
+        readonly name = '小白'   // 未指明name的类型，默认name类型为：小白
+        
+        constructor(age: number){
+            this.age = age
+        }
+        
+        setAge(){
+            this.age = 18     // 报错，不能在构造函数之外修饰只读属性
+        }
+        
+        readonly setName(){   // 报错，不能修饰方法
+            
+        }
+    }
+    ~~~
+
+
+
+#### 类型兼容性
+
