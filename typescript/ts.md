@@ -387,3 +387,154 @@ p.sayHi("大家好！")
 
 #### 类型兼容性
 
+**基本概念**
+
+> TS采用的是结构化类型系统，也叫鸭子类型，类型检查关注的是值所具有的形状。
+>
+> 也就是说，在结构类型系统中，如果两个对象具有相同的形状，则认为是同一类型
+>
+> 例如：
+>
+> ~~~tsx
+> class Point { x: number, y: number}
+> class Point2D { x: number, y: number}
+> 
+> const p: Point = new Point2D()
+> 
+> /**
+> 	说明：
+> 	1. Point和Point2D是名称不同的类
+> 	2. 变量P的类型被显式标注为Point类型，但它的值确实Point2D的实例，并且没有类型错误
+> 	3. TS是结构化类型系统，只检查Point和Point2D的结构是否相同
+> 	4. 在C、Java中，他们是不同的类，无法兼容
+> */
+> ~~~
+>
+> 
+>
+> 更准确的说：对于对象类型来说，对象X的成员至少与对象Y的成员相同，则Y兼容X（成员多的可以赋值给少的）
+>
+> 例如：
+>
+> ~~~tsx
+> class Point2D { x: number, y: number}
+> class Point3D { x: number, y: number, z: number}
+> 
+> const p: Point2D = new Point3D()
+> 
+> /**
+> 	说明：
+> 	1. Point3D的成员至少与Point相同，则Point兼容Point3D
+> 	2. 所以，成员多的Point3D可以赋值给成员少的Point
+> */
+> ~~~
+>
+> 
+
+**对象之间的类型兼容**
+
+~~~tsx
+class Point { x: number, y: number}
+class Point2D { x: number, y: number}
+class Point3D { x: number, y: number, z: number}
+
+const p: Point = new Point2D()
+const p1: Point2D = new Point3D()
+~~~
+
+**接口之间的类型兼容**
+
+~~~tsx
+interface Point { x: number, y: number}
+interface Point2D { x: number, y: number}
+let p1: Point
+let P2: Point2D
+p2 = p1
+
+interface Point3D { x: number, y: number, z: number}
+let p3: Point3D
+p2 = p3 
+~~~
+
+**函数之间的类型兼容**
+
+- 参数个数
+
+  参数多的兼容参数少的（参数少的可以赋值给参数多的）
+
+  ~~~tsx
+  type F1 = (a: number) => void
+  type F2 = (a: number, b: number) => void
+  
+  let f1: F1
+  let f2: F2
+  
+  f2 = f1
+  ~~~
+
+- 参数类型
+
+  相同位置的参数类型要相同（原始类型）或兼容（对象类型）
+
+  - 原始类型
+
+    ~~~tsx
+    // 函数类型F2兼容F1，因为F1和F2的第一个参数类型相同
+    type F1 = (a: number) => void
+    type F2 = (a: number) => void
+    
+    let f1: F1
+    let f2: F2
+    
+    f2 = f1
+    ~~~
+
+  - 对象类型
+
+    ~~~tsx
+    // 参数少的可以赋值给参数多的
+    class Point2D { x: number, y: number}
+    class Point3D { x: number, y: number, z: number}
+    
+    type F1 = (p: Point2D) => void
+    type F2 = (p: Point3D) => void
+    
+    let f1: F1
+    let f2: F2
+    
+    f2 = f1
+    ~~~
+
+- 返回值类型
+
+  只需关注返回值类型本身即可
+
+  - 原始类型
+
+    ~~~tsx
+    // 返回值为原始类型，此时返回值类型要相同
+    type F1 = () => number
+    type F2 = () => number
+    
+    let f1: F1
+    let f2: F2
+    
+    f2 = f1
+    ~~~
+
+  - 对象类型
+
+    ~~~tsx
+    // 返回值为对象，此时成员多的可以赋值给成员少的
+    type F1 = () => {name: string}
+    type F2 = () => {name: string, age: number}
+    
+    let f1: F1
+    let f2: F2
+    
+    f1 = f2
+    ~~~
+
+    
+
+  
