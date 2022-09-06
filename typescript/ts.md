@@ -535,6 +535,87 @@ p2 = p3
     f1 = f2
     ~~~
 
-    
 
+
+
+#### 交叉类型
+
+> 交叉类型： 功能类似于接口继承，用于将多个类型组合为一个类型
+>
+> 说明：使用交叉类型后，新的类型就具备了原有多个类型的属性
+
+~~~tsx
+interface Person {
+    name: string
+}
+interface Contact {
+    phone: number
+}
+type PersonDetail = Person & Contact
+
+let p: PersonDetail = {
+    name: 'Bob',
+    phone: 123456
+}
+~~~
+
+
+
+#### 范型
+
+> 泛型：可以保证在类型安全的前提下，让函数等与多种类型一起工作，从而实现复用，常用于：函数、接口、class中
+
+- **创建泛型函数**
+
+  ~~~tsx
+  function id<Type>(value: Type): Type{
+      return value
+  }
   
+  /**
+  	说明：
+  		1. 语法：在函数名称后面添加<>，尖括号中添加类型变量，比如此处的Type
+  		2. 类型变量Type，是一种特殊的变量，它用于处理类型而不是值
+  		3. 该类型变量相当于一个类型容器，能够捕获用户提供的类型（类型由用户调用时指定）
+  		4. 因为Type是类型，可以将其作为函数参数及返回值的类型
+  		5. 类型变量Type，可以是任意合法的变量名
+  */
+  ~~~
+
+- **使用泛型函数**
+
+  ~~~tsx
+  function id<Type>(value: Type): Type{
+      return value
+  }
+  
+  const num = id<number>(10)    // 10
+  
+  /**
+  	说明：
+  	1. 语法：语法：在函数名称后面添加<>，尖括号中添加类型变量，比如此处的number
+  	2. 传入类型number后，这个类型会被声明函数中的Type捕获到
+  	3. 此时，Type的类型就是number，形参和函数返回值类型都是number
+  */
+  ~~~
+
+- **简化使用**
+
+  ~~~tsx
+  function id<Type>(value: Type): Type{
+      return value
+  }
+  
+  const num = id<number>(10)
+  const num1 = id(10)   // 可以通过省略<类型>的方式进行调用，编译器会自动推断出变量Type的类型
+  ~~~
+
+- **泛型约束**
+
+  > 默认情况下，泛型函数的类型变量Type可以代表多个类型，这导致无法访问任何属性
+  >
+  > 说明：Type可以表示任意类型，但无法保证一定存在某些属性
+  >
+  > 此时，需要为泛型添加约束，来收缩类型
+
+- 
